@@ -1,7 +1,9 @@
+using Azure.Data.Tables;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
 using Microsoft.Extensions.Logging;
+using SailboatTracker.Models;
 
 namespace SailboatTracker.Functions
 {
@@ -14,11 +16,19 @@ namespace SailboatTracker.Functions
             _logger = logger;
         }
 
-        [Function("GetBoatsFunction")]
-        public IActionResult Run([HttpTrigger(AuthorizationLevel.Function, "get", "post")] HttpRequest req)
-        {
-            _logger.LogInformation("C# HTTP trigger function processed a request.");
-            return new OkObjectResult("Welcome to Azure Functions!");
-        }
-    }
+		[Function("GetBoats")]
+		public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "boats")] HttpRequest req, ILogger log)
+		{
+			_logger.LogInformation("C# HTTP trigger function processed a request.");
+
+			var tableClient = new TableClient(
+				Environment.GetEnvironmentVariable("AzureWebJobsStorage"),
+				"Boats");
+
+			var boats = tableClient.Query<BoatEntity>(b => b.PartitionKey == "HallbergRassy").ToList();
+
+			return new OkObjectResult(boats);
+		}
+
+	}
 }
