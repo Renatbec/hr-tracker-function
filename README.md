@@ -27,3 +27,42 @@ This project was created as part of a technical interview test — and inspired 
   "locationSpotted": "Ellös, Sweden",
   "dateSpotted": "2025-08-05"
 }
+```
+
+---
+
+## 🧪 Running Locally
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/renate/hr-tracker-function.git
+cd hr-tracker-function
+
+# 2. Ensure Azure Storage Emulator is running or use connection string
+# In local.settings.json:
+{
+  "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+  "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+}
+
+# 3. Start the Azure Function locally
+func start
+```
+
+## 🧭 Technologies Used
+- Azure Functions (.NET)
+- Azure Table Storage
+- C#
+- HTTP Trigger
+- JSON Serialization
+
+---
+## 📌 Notes
+This project runs locally in debug mode.
+Designed as part of a technical interview test.
+Inspired by sailing aboard a Hallberg-Rassy 352 in Kattegat
+
+---
+## 👩‍💻 Author
+Renate sailing around in Kattegat aboard a Hallberg-Rassy 352 while building cloud-native solutions. Combining maritime adventure with modern software engineering.
+
