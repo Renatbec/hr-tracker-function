@@ -1,6 +1,6 @@
 # ⛵ HR Tracker Function
 
-**HallbergRassyTracker** is an Azure Function project designed to log and retrieve sightings of Hallberg-Rassy sailboats during a sailing trip. It exposes two HTTP endpoints for storing and fetching boat data in Azure Table Storage.
+**SailboatTracker** is an Azure Function project designed to log and retrieve sightings of Hallberg-Rassy sailboats during a sailing trip. It exposes two HTTP endpoints for storing and fetching boat data in Azure Table Storage.
 
 This project was created as part of a technical interview test — and inspired by real-life sailing aboard a Hallberg-Rassy 352 from 1979.
 
