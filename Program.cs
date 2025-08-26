@@ -1,8 +1,15 @@
+using Azure.Data.Tables;
 using Microsoft.Azure.Functions.Worker.Builder;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 var builder = FunctionsApplication.CreateBuilder(args);
 
+//Registrer TableClient som singleton
+var connectionString = Environment.GetEnvironmentVariable("AzureWebJobsStorage");
+builder.Services.AddSingleton(new TableClient(connectionString, "Boats"));
+
+//Konfigurer web-applikasjonen
 builder.ConfigureFunctionsWebApplication();
 
 // Application Insights isn't enabled by default. See https://aka.ms/AAt8mw4.
