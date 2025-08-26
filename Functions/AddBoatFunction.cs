@@ -69,7 +69,7 @@ namespace SailboatTracker.Functions
 			}
 			catch (Exception ex)
 			{
-				_logger.LogError(ex, "Feil ved lagring av båtdata.");
+				_logger.LogError(ex, "Error adding boat entity to Azure Table Storage");
 				return new StatusCodeResult(StatusCodes.Status500InternalServerError);
 			}
 		}
