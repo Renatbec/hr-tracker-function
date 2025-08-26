@@ -1,4 +1,9 @@
-# ⛵ HR Tracker Function
+<table>
+  <tr>
+    <td><img src="Images/Copilot_logo_light.png" alt="Logo" width="100"/></td>
+    <td><h1 style="margin-left: 10px;">HR Tracker Function</h1></td>
+  </tr>
+</table>
 
 **SailboatTracker** is an Azure Function project designed to log and retrieve sightings of Hallberg-Rassy sailboats during a sailing trip. It exposes two HTTP endpoints for storing and fetching boat data in Azure Table Storage.
 
@@ -13,6 +18,9 @@ This project was created as part of a technical interview test — and inspired 
 
 - **GET /api/boats**  
   Returns all stored boat entries.
+-
+- **DELETE /api/boats**  
+  Deletes all boat entries in the table.
 
 ---
 
@@ -20,12 +28,12 @@ This project was created as part of a technical interview test — and inspired 
 
 ```json
 {
-  "boatBrand": "Hallberg-Rassy",
-  "model": "352",
+  "model": "HR 352",
+  "boatName": "Tembo",
   "lengthFeet": 35,
   "yearBuilt": 1979,
-  "locationSpotted": "Ellös, Sweden",
-  "dateSpotted": "2025-08-05"
+  "locationSpotted": "Ellös",
+  "dateSpotted": "2025-08-05T14:30:00Z"
 }
 ```
 
@@ -55,14 +63,19 @@ func start
 - C#
 - HTTP Trigger
 - JSON Serialization
+- Dependency Injection
+- ITableEntity
+- async/await programming
 
 ---
 ## 📌 Notes
 This project runs locally in debug mode.
+Azure subscription and storage account are required for testing. 
+You can use the Azure Storage Emulator or Azurite for local development by setting the connection string to `UseDevelopmentStorage=true` in `local.settings.json`.
 Designed as part of a technical interview test.
-Inspired by sailing aboard a Hallberg-Rassy 352 in Kattegat
+Inspired by sailing aboard a Hallberg-Rassy 352 in Kattegat.
 
 ---
 ## 👩‍💻 Author
-Renate sailing around in Kattegat aboard a Hallberg-Rassy 352 while building cloud-native solutions. Combining maritime adventure with modern software engineering.
+Renate sailing around in Kattegat aboard a Hallberg-Rassy 352 from 1979 while building cloud-native solutions. Combining maritime adventure with modern software engineering.
 

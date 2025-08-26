@@ -39,6 +39,11 @@ namespace SailboatTracker.Functions
 					return new BadRequestObjectResult("Ugyldig data.");
 				}
 
+				if (string.IsNullOrWhiteSpace(boatRequest.BoatName) || boatRequest.LengthFeet <= 0)
+				{
+					return new BadRequestObjectResult("Ugyldig båtinformasjon.");
+				}
+
 				// Opprett en ny BoatEntity basert på innkommende data
 				var boatEntity = new BoatEntity
 				{
@@ -55,6 +60,7 @@ namespace SailboatTracker.Functions
 					// PartitionKey brukes til å gruppere entiteter – kan endres etter behov
 					PartitionKey = "HallbergRassy"
 				};
+
 
 				// Lagre entiteten i tabellen
 				await _tableClient.AddEntityAsync(boatEntity);
