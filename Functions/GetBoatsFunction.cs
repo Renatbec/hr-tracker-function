@@ -25,7 +25,15 @@ namespace SailboatTracker.Functions
 			{
 				_logger.LogInformation("C# HTTP trigger function processed a request.");
 
-				var boats = _tableClient.Query<BoatEntity>(b => b.PartitionKey == "HallbergRassy").ToList();
+				//var boats = _tableClient.Query<BoatEntity>(b => b.PartitionKey == "HallbergRassy").ToList();
+
+				var boats = new List<BoatEntity>();
+
+				await foreach (var boat in _tableClient
+					.QueryAsync<BoatEntity>(b => b.PartitionKey == "HallbergRassy"))
+				{
+					boats.Add(boat);
+				}
 
 				return new OkObjectResult(boats);
 			}
